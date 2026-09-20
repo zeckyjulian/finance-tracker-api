@@ -1,3 +1,6 @@
+include .env
+export
+
 .PHONY: help up down dev logs build run migrate seed test lint
 
 # Tampilkan semua perintah
@@ -26,6 +29,9 @@ build: ## Build ulang image API
 
 restart: ## Restart API saja (setelah perubahan kode)
 	docker compose restart api
+
+db-up: ## Jalankan hanya Postgres dan Redis (untuk local development)
+	docker compose up -d postgres redis
 
 # ── Development (tanpa Docker, langsung di host) ───────────────
 run: ## Jalankan API langsung (butuh Postgres & Redis jalan)
